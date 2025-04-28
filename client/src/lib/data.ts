@@ -123,6 +123,51 @@ export const projects = [
     period: "01/2025 - 02/2025",
     icon: "chat",
     link: "#"
+  },
+  {
+    title: "Network Intrusion Detection System",
+    category: "Cybersecurity",
+    description: "Engineered an ML-based network intrusion detection system capable of identifying anomalies in network traffic with 95% accuracy using supervised learning algorithms.",
+    technologies: ["Python", "Scikit-learn", "Network Security", "Wireshark"],
+    period: "05/2023 - 08/2023",
+    icon: "security",
+    link: "#"
+  },
+  {
+    title: "Fraud Detection Platform",
+    category: "FinTech",
+    description: "Developed a fraud detection platform for financial transactions using gradient boosting algorithms, reducing fraudulent transactions by 60% while maintaining low false positives.",
+    technologies: ["XGBoost", "SQL", "Python", "Financial Analysis"],
+    period: "10/2022 - 02/2023",
+    icon: "assessment",
+    link: "#"
+  },
+  {
+    title: "Healthcare Patient Flow Optimization",
+    category: "Healthcare Analytics",
+    description: "Created predictive models to optimize hospital patient flow and resource allocation, reducing average wait times by 35% and improving operational efficiency.",
+    technologies: ["R", "Predictive Modeling", "Time Series Analysis"],
+    period: "03/2023 - 07/2023",
+    icon: "assessment",
+    link: "#"
+  },
+  {
+    title: "Vulnerability Scanner for IoT Devices",
+    category: "IoT Security",
+    description: "Built an automated vulnerability scanner for IoT devices that identified 40% more security flaws than traditional methods by using custom heuristics algorithms.",
+    technologies: ["Python", "Kali Linux", "IoT Security", "Penetration Testing"],
+    period: "08/2022 - 11/2022",
+    icon: "security",
+    link: "#"
+  },
+  {
+    title: "AI-Powered Phishing Detection",
+    category: "Security AI",
+    description: "Developed an AI system that analyzes email content and metadata to detect sophisticated phishing attempts with 92% accuracy, surpassing traditional rule-based systems.",
+    technologies: ["NLP", "Machine Learning", "Email Security"],
+    period: "06/2024 - 08/2024",
+    icon: "chat",
+    link: "#"
   }
 ];
 
@@ -137,15 +182,35 @@ export const technicalSkills = [
   },
   {
     name: "Data Visualization",
-    level: 80
-  },
-  {
-    name: "Ethical Hacking",
     level: 85
   },
   {
+    name: "Ethical Hacking",
+    level: 88
+  },
+  {
     name: "Network Security",
+    level: 82
+  },
+  {
+    name: "Big Data Analytics",
     level: 80
+  },
+  {
+    name: "Cloud Security",
+    level: 78
+  },
+  {
+    name: "Natural Language Processing",
+    level: 83
+  },
+  {
+    name: "Vulnerability Assessment",
+    level: 85
+  },
+  {
+    name: "Deep Learning",
+    level: 75
   }
 ];
 
@@ -153,6 +218,11 @@ export const toolsAndFrameworks = [
   {
     name: "PyTorch",
     description: "Deep learning framework for creating neural networks and AI models",
+    icon: "code"
+  },
+  {
+    name: "TensorFlow",
+    description: "End-to-end machine learning platform for building advanced models",
     icon: "code"
   },
   {
@@ -179,6 +249,31 @@ export const toolsAndFrameworks = [
     name: "Nmap",
     description: "Network discovery and security auditing tool",
     icon: "manage_search"
+  },
+  {
+    name: "Wireshark",
+    description: "Network protocol analyzer for monitoring and troubleshooting",
+    icon: "security"
+  },
+  {
+    name: "Hadoop",
+    description: "Framework for distributed storage and processing of big data",
+    icon: "assessment"
+  },
+  {
+    name: "Jupyter Notebooks",
+    description: "Web application for creating interactive computing documents",
+    icon: "code"
+  },
+  {
+    name: "Kali Linux",
+    description: "Advanced penetration testing and security auditing Linux distribution",
+    icon: "security"
+  },
+  {
+    name: "Docker",
+    description: "Platform for developing, shipping, and running applications in containers",
+    icon: "code"
   }
 ];
 
@@ -197,6 +292,22 @@ export const softSkills = [
   },
   {
     name: "Time Management",
+    icon: "schedule"
+  },
+  {
+    name: "Critical Thinking",
+    icon: "psychology"
+  },
+  {
+    name: "Teamwork",
+    icon: "groups"
+  },
+  {
+    name: "Adaptability",
+    icon: "psychology"
+  },
+  {
+    name: "Creativity",
     icon: "schedule"
   }
 ];

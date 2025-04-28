@@ -1,8 +1,48 @@
 import { motion } from "framer-motion";
 import { technicalSkills, toolsAndFrameworks, softSkills } from "@/lib/data";
-import { Code, BarChart, Brain, Database, Shield, Search } from "lucide-react";
+import { Code, BarChart, Brain, Database, Shield, Search, Clock, Users, MessageCircle, Lightbulb } from "lucide-react";
+import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Skills = () => {
+  const [hoverSkill, setHoverSkill] = useState<number | null>(null);
+
+  // Get appropriate icon for the tool
+  const getToolIcon = (iconName: string) => {
+    switch (iconName) {
+      case "code":
+        return Code;
+      case "bar_chart":
+        return BarChart;
+      case "psychology":
+        return Brain;
+      case "assessment":
+        return Database;
+      case "security":
+        return Shield;
+      case "manage_search":
+        return Search;
+      default:
+        return Code;
+    }
+  };
+
+  // Get appropriate icon for the soft skill
+  const getSoftSkillIcon = (iconName: string) => {
+    switch (iconName) {
+      case "groups":
+        return Users;
+      case "forum":
+        return MessageCircle;
+      case "psychology":
+        return Brain;
+      case "schedule":
+        return Clock;
+      default:
+        return Lightbulb;
+    }
+  };
+
   return (
     <section id="skills" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -21,128 +61,150 @@ const Skills = () => {
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {/* Technical Skills */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Technical Skills</h3>
-            
-            <div className="space-y-6">
-              {technicalSkills.map((skill, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="flex justify-between mb-1">
-                    <span className="font-medium text-dark">{skill.name}</span>
-                    <span className="text-sm text-muted">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <motion.div 
-                      className="skill-progress"
-                      initial={{ width: "0%" }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.2 }}
-                    ></motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <Tabs defaultValue="technical" className="max-w-5xl mx-auto">
+          <TabsList className="grid grid-cols-3 mb-8 max-w-md mx-auto">
+            <TabsTrigger value="technical">Technical Skills</TabsTrigger>
+            <TabsTrigger value="tools">Tools & Frameworks</TabsTrigger>
+            <TabsTrigger value="soft">Soft Skills</TabsTrigger>
+          </TabsList>
           
-          {/* Tools & Frameworks */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="font-heading text-2xl font-bold text-primary mb-6">Tools & Frameworks</h3>
-            
-            <div className="grid grid-cols-2 gap-4">
+          <TabsContent value="technical">
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Technical Skills - Left Column */}
+              <motion.div 
+                className="space-y-6"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                {technicalSkills.slice(0, Math.ceil(technicalSkills.length / 2)).map((skill, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    onMouseEnter={() => setHoverSkill(index)}
+                    onMouseLeave={() => setHoverSkill(null)}
+                    className="relative group"
+                  >
+                    <div className="flex justify-between mb-1">
+                      <span className="font-medium text-dark group-hover:text-accent transition-colors duration-300">{skill.name}</span>
+                      <span className="text-sm text-muted">{skill.level}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <motion.div 
+                        className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                        initial={{ width: "0%" }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        style={{ 
+                          boxShadow: hoverSkill === index ? '0 0 10px rgba(0,123,255,0.5)' : 'none'
+                        }}
+                      ></motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
+              {/* Technical Skills - Right Column */}
+              <motion.div 
+                className="space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                {technicalSkills.slice(Math.ceil(technicalSkills.length / 2)).map((skill, index) => {
+                  const actualIndex = index + Math.ceil(technicalSkills.length / 2);
+                  return (
+                    <motion.div 
+                      key={actualIndex}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      onMouseEnter={() => setHoverSkill(actualIndex)}
+                      onMouseLeave={() => setHoverSkill(null)}
+                      className="relative group"
+                    >
+                      <div className="flex justify-between mb-1">
+                        <span className="font-medium text-dark group-hover:text-accent transition-colors duration-300">{skill.name}</span>
+                        <span className="text-sm text-muted">{skill.level}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <motion.div 
+                          className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                          initial={{ width: "0%" }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.2 }}
+                          style={{ 
+                            boxShadow: hoverSkill === actualIndex ? '0 0 10px rgba(0,123,255,0.5)' : 'none'
+                          }}
+                        ></motion.div>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </motion.div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="tools">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {toolsAndFrameworks.map((tool, index) => {
-                let ToolIcon;
-                switch (tool.icon) {
-                  case "code":
-                    ToolIcon = Code;
-                    break;
-                  case "bar_chart":
-                    ToolIcon = BarChart;
-                    break;
-                  case "psychology":
-                    ToolIcon = Brain;
-                    break;
-                  case "assessment":
-                    ToolIcon = Database;
-                    break;
-                  case "security":
-                    ToolIcon = Shield;
-                    break;
-                  case "manage_search":
-                    ToolIcon = Search;
-                    break;
-                  default:
-                    ToolIcon = Code;
-                }
+                const ToolIcon = getToolIcon(tool.icon);
                 
                 return (
                   <motion.div 
                     key={index}
-                    className="bg-white p-4 rounded-lg shadow-sm border border-gray-100"
+                    className="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
                   >
-                    <div className="flex items-center mb-2">
-                      <ToolIcon className="h-5 w-5 text-accent mr-2" />
-                      <h4 className="font-medium">{tool.name}</h4>
+                    <div className="flex items-center mb-3">
+                      <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center mr-3">
+                        <ToolIcon className="h-5 w-5 text-white" />
+                      </div>
+                      <h4 className="font-semibold text-primary">{tool.name}</h4>
                     </div>
                     <p className="text-sm text-muted">{tool.description}</p>
                   </motion.div>
                 );
               })}
             </div>
-          </motion.div>
-        </div>
-        
-        {/* Soft Skills */}
-        <motion.div 
-          className="mt-16 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="font-heading text-2xl font-bold text-primary mb-6 text-center">Soft Skills</h3>
+          </TabsContent>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {softSkills.map((skill, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white p-5 rounded-lg shadow-sm border border-gray-100"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {skill.icon === "groups" && <svg className="mx-auto h-8 w-8 text-primary mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>}
-                {skill.icon === "forum" && <svg className="mx-auto h-8 w-8 text-primary mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>}
-                {skill.icon === "psychology" && <svg className="mx-auto h-8 w-8 text-primary mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>}
-                {skill.icon === "schedule" && <svg className="mx-auto h-8 w-8 text-primary mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>}
-                <h4 className="font-medium text-dark">{skill.name}</h4>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <TabsContent value="soft">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+              {softSkills.map((skill, index) => {
+                const SkillIcon = getSoftSkillIcon(skill.icon);
+                
+                return (
+                  <motion.div 
+                    key={index}
+                    className="bg-white p-5 rounded-lg shadow-md border border-gray-100 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                      <SkillIcon className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="font-semibold text-primary">{skill.name}</h4>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
