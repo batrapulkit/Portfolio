@@ -46,7 +46,8 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 pt-28 pb-20 z-10 relative">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-chart-2/20 via-chart-3/20 to-chart-4/20 blur-3xl -z-10"></div>
+        <div className="flex flex-col md:flex-row items-center glass-card p-8 md:p-12">
           <motion.div 
             className="md:w-3/5 mb-10 md:mb-0"
             initial={{ opacity: 0, y: 20 }}
