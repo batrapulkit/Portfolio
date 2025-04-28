@@ -61,16 +61,16 @@ const Hero = () => {
             >
               <span className="bg-accent bg-opacity-20 text-accent text-sm font-medium px-4 py-2 rounded-full inline-block mb-4">Data Scientist & Cybersecurity Expert</span>
             </motion.div>
-            
+
             <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">Pulkit Batra</span>
             </h1>
-            
+
             <p className="text-lg md:text-xl mb-8 max-w-2xl text-gray-100 leading-relaxed">
               Combining expertise in AI, machine learning, and cybersecurity to build secure, 
               data-driven solutions that protect and innovate.
             </p>
-            
+
             <div className="flex flex-wrap gap-4">
               <Button 
                 asChild 
@@ -89,7 +89,7 @@ const Hero = () => {
                 <a href="#projects">View Projects</a>
               </Button>
             </div>
-            
+
             <motion.div 
               className="mt-10 flex space-x-4"
               initial={{ opacity: 0, y: 20 }}
@@ -123,7 +123,7 @@ const Hero = () => {
               </a>
             </motion.div>
           </motion.div>
-          
+
           <motion.div 
             className="md:w-2/5 flex justify-center relative"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -137,7 +137,7 @@ const Hero = () => {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
                 </svg>
               </div>
-              
+
               {/* Floating skill icons */}
               <motion.div 
                 className="absolute top-0 -left-4 w-14 h-14 bg-accent rounded-full flex items-center justify-center z-20 shadow-lg"
