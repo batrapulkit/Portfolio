@@ -4,7 +4,7 @@ import { GitPullRequest, Linkedin, Mail, ChevronDown, Shield, BarChart2 } from "
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden gradient-bg text-white">
+    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-background text-foreground">
       <div className="absolute inset-0 overflow-hidden z-0">
         <motion.div 
           className="absolute top-20 left-10 w-64 h-64 rounded-full bg-accent opacity-10"
